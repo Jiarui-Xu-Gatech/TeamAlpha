@@ -12,6 +12,11 @@ public class npcController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     Vector3 playerPos = Vector3.zero;
     float remainDis;
+    bool seePlayer;
+    Vector3 vel;
+    Vector3 desiredVel;
+    float angleToTurn;
+    BoxCollider collider;
     // Start is called before the first frame update
 
     void Awake()
@@ -19,15 +24,18 @@ public class npcController : MonoBehaviour
         anim = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim.SetBool("isWalk", false);
+        seePlayer = false;
+        vel = navMeshAgent.velocity.normalized;
+        desiredVel = navMeshAgent.desiredVelocity.normalized;
+        angleToTurn = Vector3.Angle(vel, desiredVel);
+        collider = GetComponent<BoxCollider>();
     }
 
     void OnTriggerEnter(Collider c)
     {
         if (c.attachedRigidbody != null)
         {
-            anim.SetBool("isJump", false);
-            anim.SetBool("isWalk", true);
-            anim.SetBool("isIdle", false);
+            seePlayer = true;
         }
     }
 
@@ -52,23 +60,31 @@ public class npcController : MonoBehaviour
     {
         playerPos = player.transform.position;
         remainDis = (playerPos - navMeshAgent.transform.position).magnitude;
+        vel = navMeshAgent.velocity.normalized;
+        desiredVel = navMeshAgent.desiredVelocity.normalized;
+        angleToTurn = Vector3.Angle(vel, desiredVel);
 
-        if (anim.GetBool("isWalk") == true)
+        if (seePlayer)
         {
-            //this.transform.position += Vector3.Normalize(player.position - this.transform.position) * speed;
-            //this.transform.LookAt(playerPos, Vector3.up);
-            navMeshAgent.SetDestination(player.position);
-            anim.SetBool("isJump", false);
-            anim.SetBool("isWalk", true);
-            anim.SetBool("isIdle", false);
+            if(remainDis > 5)
+            {
+                navMeshAgent.SetDestination(player.position);
+                anim.SetBool("isJump", false);
+                anim.SetBool("isWalk", true);
+                anim.SetBool("isIdle", false);
+                transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
+            }
+            else
+            {
+                anim.SetBool("isJump", true);
+                anim.SetBool("isWalk", false);
+                anim.SetBool("isIdle", false);
+                //transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
+            }
+
+            collider.size = new Vector3(1, 1, 1);
+            collider.center = new Vector3(0, 0, 0);
         }
-        
-        if(remainDis < 5)
-        {
-            anim.SetBool("isJump", true);
-            anim.SetBool("isWalk", false);
-            anim.SetBool("isIdle", false);
-            navMeshAgent.isStopped = true;
-        }
+
     }
 }

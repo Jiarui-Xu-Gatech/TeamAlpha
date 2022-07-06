@@ -14,6 +14,8 @@ public class Controller_input : MonoBehaviour
 
     private float forwardSpeedLimit = 1f;
 
+    public bool allowedGather = false;
+
     public float Forward
     {
         get;
@@ -55,7 +57,28 @@ public class Controller_input : MonoBehaviour
 
         Forward = filteredForwardInput;
         Turn = filteredTurnInput;
-        Gather = isgather;
         Jump = isJump;
+
+
+        //Gathering implementation
+        Gather = isgather;
+        if (Gather && allowedGather)
+        {
+            this.GetComponent<BallCollecter>().gatherover = Gather;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.GetComponent<Rigidbody>()!= null)
+        {
+            allowedGather = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        allowedGather = false;
     }
 }

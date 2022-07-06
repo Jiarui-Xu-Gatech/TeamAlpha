@@ -2,19 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableBall : MonoBehaviour
+public class CollectBall : MonoBehaviour
 {
 
 	void OnTriggerEnter(Collider c)
 	{
 		if (c.attachedRigidbody != null)
 		{
-			BallCollector bc = c.attachedRigidbody.gameObject.GetComponent<BallCollector>();
-			if (bc != null)
+			BallCollecter bc = c.attachedRigidbody.gameObject.GetComponent<BallCollecter>();
+			if (bc != null && bc.gatherover)
 			{
 				bc.ReceiveBall();
-				EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
 				Destroy(this.gameObject);
+				EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
+			}
+		}
+	}
+
+    private void OnTriggerStay(Collider c)
+    {
+		if (c.attachedRigidbody != null)
+		{
+			BallCollecter bc = c.attachedRigidbody.gameObject.GetComponent<BallCollecter>();
+			if (bc != null && bc.gatherover)
+			{
+				bc.ReceiveBall();
+				Destroy(this.gameObject);
+				EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
 			}
 		}
 	}

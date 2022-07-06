@@ -16,7 +16,7 @@ public class npcController : MonoBehaviour
     Vector3 vel;
     Vector3 desiredVel;
     float angleToTurn;
-    BoxCollider collider;
+    BoxCollider new_collider;
     // Start is called before the first frame update
 
     void Awake()
@@ -28,7 +28,7 @@ public class npcController : MonoBehaviour
         vel = navMeshAgent.velocity.normalized;
         desiredVel = navMeshAgent.desiredVelocity.normalized;
         angleToTurn = Vector3.Angle(vel, desiredVel);
-        collider = GetComponent<BoxCollider>();
+        new_collider = GetComponent<BoxCollider>();
     }
 
     void OnTriggerEnter(Collider c)
@@ -82,8 +82,8 @@ public class npcController : MonoBehaviour
                 //transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
             }
 
-            collider.size = new Vector3(1, 1, 1);
-            collider.center = new Vector3(0, 0, 0);
+            new_collider.size = new Vector3(1, 1, 1);
+            new_collider.center = new Vector3(0, 0, 0);
         }
 
     }

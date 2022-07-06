@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class TimeGameOver : MonoBehaviour
 {
-    int currentTime=10;
+    public int currentTime=100;
     public Text timeUI;
     void Start()
     {

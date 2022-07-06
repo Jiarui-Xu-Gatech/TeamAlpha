@@ -9,6 +9,7 @@ public class Basic_control : MonoBehaviour
     private Animator anim;
     private Rigidbody rbody;
     private Controller_input cinput;
+    private AnimatorStateInfo stateinfo;
 
     public float forwardMaxSpeed = 1f;
     public float turnMaxSpeed = 1f;
@@ -52,10 +53,9 @@ public class Basic_control : MonoBehaviour
             rbody.MovePosition(rbody.position + this.transform.forward * 4 * inputForward * Time.deltaTime * forwardMaxSpeed);
             rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(100 * inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));
         }
-
         anim.SetFloat("vely", inputForward);
         anim.SetFloat("velx", inputTurn);
-        anim.SetBool("Gathering", cinput.Gather);
+        anim.SetBool("Gathering", cinput.Gather);   
         anim.SetBool("Jumping", cinput.Jump);
     }
 }

@@ -28,7 +28,6 @@ public class CollectBall : MonoBehaviour
 			{
 				bc.ReceiveBall();
 				Destroy(this.gameObject);
-				EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
 			}
 		}
 	}

@@ -14,6 +14,9 @@ public class Basic_control : MonoBehaviour
     public float forwardMaxSpeed = 1f;
     public float turnMaxSpeed = 1f;
 
+    public bool isGathering;
+    public bool isJumping;
+
     void Awake()
     {
 
@@ -38,24 +41,45 @@ public class Basic_control : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        isGathering = false;
+        isJumping = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Gathering"))
+        {
+            isGathering = true;
+        }
+        else
+        {
+            isGathering = false;
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
+
         float inputForward = 0f;
         float inputTurn = 0f;
         inputForward = cinput.Forward;
         inputTurn = cinput.Turn;
-        if (cinput.Gather == false)
+        if (isGathering == false)
         {
-            rbody.MovePosition(rbody.position + this.transform.forward * 4 * inputForward * Time.deltaTime * forwardMaxSpeed);
+            rbody.MovePosition(rbody.position + this.transform.forward * 5 * inputForward * Time.deltaTime * forwardMaxSpeed);
             rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(100 * inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));
         }
+
+
+
         anim.SetFloat("vely", inputForward);
         anim.SetFloat("velx", inputTurn);
-        anim.SetBool("Gathering", cinput.Gather);   
-        anim.SetBool("Jumping", cinput.Jump);
+        anim.SetBool("Gathering", cinput.Gather & !isGathering);
+        anim.SetBool("Jumping", cinput.Jump & !isJumping);
     }
 }

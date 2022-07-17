@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Controller_input : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Controller_input : MonoBehaviour
     private float forwardSpeedLimit = 1f;
 
     public bool allowedGather = false;
+    public bool endReached = false;
 
     public float Forward
     {
@@ -62,11 +64,15 @@ public class Controller_input : MonoBehaviour
 
         //Gathering implementation
         Gather = isgather;
-        if (Gather && allowedGather)
+        if (Gather && allowedGather && this.GetComponent<Basic_control>().isGathering)
         {
             this.GetComponent<BallCollecter>().gatherover = Gather;
         }
-
+        //End Gaming
+        if (this.GetComponent<BallCollecter>().hasBall & endReached)
+        {
+            SceneManager.LoadScene("meun");
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -75,10 +81,15 @@ public class Controller_input : MonoBehaviour
         {
             allowedGather = true;
         }
+        if (collision.name == "Endpoint") 
+        {
+            endReached = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         allowedGather = false;
+        endReached = false;
     }
 }

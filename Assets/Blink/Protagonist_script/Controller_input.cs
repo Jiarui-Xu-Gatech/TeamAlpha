@@ -17,6 +17,7 @@ public class Controller_input : MonoBehaviour
 
     public bool allowedGather = false;
     public bool endReached = false;
+    public bool allowedhit = false;
 
     public float Forward
     {
@@ -42,6 +43,17 @@ public class Controller_input : MonoBehaviour
         set;
     }
 
+    public bool Gethit
+    {
+        get;
+        set;
+    }
+
+    public bool dead
+    {
+        get;
+        set;
+    }
 
     void Update()
     {
@@ -68,6 +80,12 @@ public class Controller_input : MonoBehaviour
         {
             this.GetComponent<BallCollecter>().gatherover = Gather;
         }
+        //Getting hit implementation
+        if (Gethit)
+        {
+            
+        }
+
         //End Gaming
         if (this.GetComponent<BallCollecter>().hasBall & endReached)
         {
@@ -85,11 +103,16 @@ public class Controller_input : MonoBehaviour
         {
             endReached = true;
         }
+        if (collision.name.Contains("NPC"))
+        {
+            allowedhit = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         allowedGather = false;
         endReached = false;
+        allowedhit = false;
     }
 }

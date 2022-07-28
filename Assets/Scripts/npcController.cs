@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 public class npcController : MonoBehaviour
@@ -17,6 +18,8 @@ public class npcController : MonoBehaviour
     Vector3 desiredVel;
     float angleToTurn;
     BoxCollider new_collider;
+    public Text bloodUI;
+    private int currentBlood;
     // Start is called before the first frame update
 
     void Awake()
@@ -29,6 +32,7 @@ public class npcController : MonoBehaviour
         desiredVel = navMeshAgent.desiredVelocity.normalized;
         angleToTurn = Vector3.Angle(vel, desiredVel);
         new_collider = GetComponent<BoxCollider>();
+        navMeshAgent.speed = 3;
     }
 
     void OnTriggerEnter(Collider c)
@@ -36,6 +40,7 @@ public class npcController : MonoBehaviour
         if (c.attachedRigidbody != null)
         {
             seePlayer = true;
+            currentBlood = int.Parse(bloodUI.text);
         }
     }
 
@@ -66,7 +71,7 @@ public class npcController : MonoBehaviour
 
         if (seePlayer)
         {
-            if(remainDis > 5)
+            if(remainDis > 1)
             {
                 navMeshAgent.SetDestination(player.position);
                 anim.SetBool("isJump", false);
@@ -80,6 +85,13 @@ public class npcController : MonoBehaviour
                 anim.SetBool("isWalk", false);
                 anim.SetBool("isIdle", false);
                 //transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
+
+                if (seePlayer)
+                {
+                    currentBlood = int.Parse(bloodUI.text);
+                    currentBlood -= 1;
+                    bloodUI.text = currentBlood.ToString();
+                }
             }
 
             new_collider.size = new Vector3(1, 1, 1);

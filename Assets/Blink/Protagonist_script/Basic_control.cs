@@ -16,6 +16,8 @@ public class Basic_control : MonoBehaviour
 
     public bool isGathering;
     public bool isJumping;
+    public bool gethit;
+    public bool isDying;
 
     void Awake()
     {
@@ -43,6 +45,8 @@ public class Basic_control : MonoBehaviour
     {
         isGathering = false;
         isJumping = false;
+        gethit = false;
+        isDying = false;
     }
 
     // Update is called once per frame
@@ -65,6 +69,24 @@ public class Basic_control : MonoBehaviour
             isJumping = false;
         }
 
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
+        {
+            gethit = true;
+        }
+        else
+        {
+            gethit = false;
+        }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            isDying = true;
+        }
+        else
+        {
+            isDying = false;
+        }
+
         float inputForward = 0f;
         float inputTurn = 0f;
         inputForward = cinput.Forward;
@@ -81,5 +103,9 @@ public class Basic_control : MonoBehaviour
         anim.SetFloat("velx", inputTurn);
         anim.SetBool("Gathering", cinput.Gather & !isGathering);
         anim.SetBool("Jumping", cinput.Jump & !isJumping);
+        
+        //Todo: implement the following
+        //anim.SetBool("Gethit", cinput.Gather & !gethit);
+        //anim.SetBool("HPzero", cinput.Gather & !isDying);
     }
 }

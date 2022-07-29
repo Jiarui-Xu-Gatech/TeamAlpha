@@ -30,7 +30,7 @@ public class BloodGameOver : MonoBehaviour
         {
             //timeUI.text = "Game Over!";
             StartCoroutine(showTextFuntion());
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("GameplayScene");
         }
 
     }

@@ -17,10 +17,15 @@ public class CoinScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider others)
     {
-        if (others.name == "HumanMale_Character_FREE")
+        if (others.name == "Protagonist")
         {
-            others.GetComponent<PlayerScript>().points++;
-            //Add 1 to points
+            //others.GetComponent<PlayerScript>().points++;
+            //Heal the protagonist but the HP limit is 120
+            int HP = GameObject.Find("Protagonist").GetComponent<Controller_input>().currentHP;
+            if (HP <= 100)
+            {
+                GameObject.Find("Protagonist").GetComponent<Controller_input>().currentHP += 20;
+            }
             Destroy(gameObject); //this destorys things
         }
     }

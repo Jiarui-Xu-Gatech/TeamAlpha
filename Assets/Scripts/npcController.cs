@@ -19,7 +19,6 @@ public class npcController : MonoBehaviour
     float angleToTurn;
     BoxCollider new_collider;
     public Text bloodUI;
-    private int currentBlood;
     // Start is called before the first frame update
 
     void Awake()
@@ -40,7 +39,6 @@ public class npcController : MonoBehaviour
         if (c.attachedRigidbody != null)
         {
             seePlayer = true;
-            currentBlood = int.Parse(bloodUI.text);
         }
     }
 
@@ -85,13 +83,6 @@ public class npcController : MonoBehaviour
                 anim.SetBool("isWalk", false);
                 anim.SetBool("isIdle", false);
                 //transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
-
-                if (seePlayer)
-                {
-                    currentBlood = int.Parse(bloodUI.text);
-                    currentBlood -= 1;
-                    bloodUI.text = currentBlood.ToString();
-                }
             }
 
             new_collider.size = new Vector3(1, 1, 1);

@@ -6,29 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class BloodGameOver : MonoBehaviour
 {
-    private int currentBlood;
     public Text bloodUI;
     public Text textUI;
     void Start()
     {
-        currentBlood = int.Parse(bloodUI.text);
     }
 
     private void Update()
     {
-        currentBlood = int.Parse(bloodUI.text);
         updateBloodUI();
     }
 
     void updateBloodUI()
     {
-        if (currentBlood > 0)
+        bloodUI.text = GameObject.Find("Protagonist").GetComponent<Controller_input>().currentHP.ToString();
+        if (!GameObject.Find("Protagonist").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Death") && GameObject.Find("Protagonist").GetComponent<Basic_control>().restart)
         {
-            bloodUI.text = currentBlood.ToString();
-        }
-        else
-        {
-            //timeUI.text = "Game Over!";
             StartCoroutine(showTextFuntion());
             SceneManager.LoadScene("GameplayScene");
         }

@@ -18,6 +18,8 @@ public class Basic_control : MonoBehaviour
     public bool isJumping;
     public bool gethit;
     public bool isDying;
+    public bool hasbeenhit;
+    public bool restart;
 
     void Awake()
     {
@@ -43,10 +45,13 @@ public class Basic_control : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         isGathering = false;
         isJumping = false;
         gethit = false;
         isDying = false;
+        hasbeenhit = false;
+        restart = false;
     }
 
     // Update is called once per frame
@@ -71,16 +76,23 @@ public class Basic_control : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
         {
+            if (!hasbeenhit)
+            {
+                this.GetComponent<Controller_input>().currentHP -= 20;
+                hasbeenhit = true;
+            }
             gethit = true;
         }
         else
         {
             gethit = false;
+            hasbeenhit = false;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             isDying = true;
+            restart = true;
         }
         else
         {
@@ -91,22 +103,20 @@ public class Basic_control : MonoBehaviour
         float inputTurn = 0f;
         inputForward = cinput.Forward;
         inputTurn = cinput.Turn;
-        if (isGathering == false)
+        if (!isGathering & !isDying)
         {
             rbody.MovePosition(rbody.position + this.transform.forward * 5 * inputForward * Time.deltaTime * forwardMaxSpeed);
             rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(100 * inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));
         }
 
 
-
         anim.SetFloat("vely", inputForward);
         anim.SetFloat("velx", inputTurn);
-        anim.SetBool("Gathering", cinput.Gather & !isGathering & !gethit & !isJumping);
-        anim.SetBool("Jumping", cinput.Jump & !isJumping & !gethit & !isGathering);
+        anim.SetBool("Gathering", cinput.Gather & !isGathering & !gethit & !isJumping & !restart);
+        anim.SetBool("Jumping", cinput.Jump & !isJumping & !gethit & !isGathering &!restart);
 
 
-        //Todo: implement the following
-        anim.SetBool("Gethit", this.GetComponent<Controller_input>().allowedhit & !gethit);
+        anim.SetBool("Gethit", this.GetComponent<Controller_input>().allowedhit & !gethit & !restart);
         anim.SetBool("HPzero", this.GetComponent<Controller_input>().dead & !isDying);
     }
 }

@@ -19,6 +19,8 @@ public class Controller_input : MonoBehaviour
     public bool endReached = false;
     public bool allowedhit = false;
 
+    public int currentHP = 100;
+
     public float Forward
     {
         get;
@@ -80,10 +82,13 @@ public class Controller_input : MonoBehaviour
         {
             this.GetComponent<BallCollecter>().gatherover = Gather;
         }
-        //Getting hit implementation
-        if (Gethit)
+        //HP equals 0 implementation
+        if (!dead)
         {
-            
+            if (currentHP <= 0)
+            {
+                dead = true;
+            }
         }
 
         //End Gaming

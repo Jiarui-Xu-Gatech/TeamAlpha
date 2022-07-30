@@ -9,6 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/meun.unity
     guid: c3e6f1ecb76b7864daff512abc5903c1
   - enabled: 1
-    path: Assets/Scenes/newScene.unity
-    guid: 030dac51c70a0f04a8d7b64e5eb5d5a6
+    path: Assets/Scenes/GameplayScene.unity
+    guid: 4ca43393ea594d0439908bb756b0a4b9
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 781b213fe38358546a8a0894c4c92707
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 56d273a57bde6a14f8df4ef9bb8abad5
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: df2db153334fad446bb35e1763e07857
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

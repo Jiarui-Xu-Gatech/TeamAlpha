@@ -20,6 +20,7 @@ public class Basic_control : MonoBehaviour
     public bool isDying;
     public bool hasbeenhit;
     public bool restart;
+    public bool allowedMoving;
 
     void Awake()
     {
@@ -57,6 +58,20 @@ public class Basic_control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Move only when run forward or backward
+        allowedMoving = (anim.GetCurrentAnimatorStateInfo(0).IsName("RunForward") || anim.GetCurrentAnimatorStateInfo(0).IsName("RunBackward") || anim.GetCurrentAnimatorStateInfo(0).IsName("Jump")) || anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit");
+
+        if (!allowedMoving)
+        {
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        }
+
+        if (allowedMoving)
+        {
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        }
+
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Gathering"))
         {
             isGathering = true;
@@ -112,7 +127,7 @@ public class Basic_control : MonoBehaviour
 
         anim.SetFloat("vely", inputForward);
         anim.SetFloat("velx", inputTurn);
-        anim.SetBool("Gathering", cinput.Gather & !isGathering & !gethit & !isJumping & !restart);
+        anim.SetBool("Gathering", cinput.Gather & !isGathering & !gethit & !isJumping & !restart &this.GetComponent<Controller_input>().allowedGather);
         anim.SetBool("Jumping", cinput.Jump & !isJumping & !gethit & !isGathering &!restart);
 
 

@@ -12521,7 +12521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1471531610306429382, guid: a87f15c94ea4a9d44b863e4108183897, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 85.79087
+      value: 103.28
       objectReference: {fileID: 0}
     - target: {fileID: 1471531610306429382, guid: a87f15c94ea4a9d44b863e4108183897, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31476,7 +31476,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1276009031
@@ -34255,7 +34255,7 @@ GameObject:
   - component: {fileID: 1694789453}
   - component: {fileID: 1694789450}
   m_Layer: 0
-  m_Name: MashRoom
+  m_Name: MushRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40143,7 +40143,7 @@ RectTransform:
   m_GameObject: {fileID: 2041635528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 1789681731}
   m_Father: {fileID: 515813712}
@@ -40151,7 +40151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -337, y: -355}
+  m_AnchoredPosition: {x: -800, y: -700}
   m_SizeDelta: {x: 620, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041635530

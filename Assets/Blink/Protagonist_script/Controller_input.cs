@@ -100,7 +100,7 @@ public class Controller_input : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.GetComponent<Rigidbody>()!= null)
+        if (collision.name == "MushRoom")
         {
             allowedGather = true;
         }

@@ -90,23 +90,13 @@ public class Controller_input : MonoBehaviour
                 dead = true;
             }
         }
-
-        //End Gaming
-        if (this.GetComponent<BallCollecter>().hasBall & endReached)
-        {
-            SceneManager.LoadScene("meun");
-        }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.name == "MushRoom")
+        if (collision.name.Contains("MushRoom"))
         {
             allowedGather = true;
-        }
-        if (collision.name == "Endpoint") 
-        {
-            endReached = true;
         }
         if (collision.name.Contains("NPC"))
         {
@@ -117,7 +107,6 @@ public class Controller_input : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         allowedGather = false;
-        endReached = false;
         allowedhit = false;
     }
 }

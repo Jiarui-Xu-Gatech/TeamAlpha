@@ -7,7 +7,7 @@ public class CollectBall : MonoBehaviour
 
 	void OnTriggerEnter(Collider c)
 	{
-		if (c.attachedRigidbody != null)
+		if (c.name == "Protagonist")
 		{
 			BallCollecter bc = c.attachedRigidbody.gameObject.GetComponent<BallCollecter>();
 			if (bc != null && bc.gatherover)

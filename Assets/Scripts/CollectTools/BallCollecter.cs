@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class BallCollecter : MonoBehaviour
 {
-    public bool hasBall = false;
-    Controller_input input;
     public bool gatherover = false;
+    public int ballgathered = 0;
 
     // Start is called before the first frame update
     public void ReceiveBall()
     {
         if (gatherover)
         {
-            hasBall = true;
+            ballgathered++;
             gatherover = false;
             this.gameObject.GetComponent<Controller_input>().allowedGather = false;
         }

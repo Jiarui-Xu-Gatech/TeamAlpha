@@ -20,10 +20,11 @@ public class LevelLoader : MonoBehaviour
     {
         if (others.name == "Protagonist")
         {
-            //others.GetComponent<PlayerScript>().points++;
-            //Heal the protagonist but the HP limit is 120
-            Destroy(gameObject);
-            SceneManager.LoadScene(iLevelToLoad);
+            if (GameObject.Find("Protagonist").GetComponent<BallCollecter>().ballgathered == 3)
+            {
+                Destroy(gameObject);
+                SceneManager.LoadScene(iLevelToLoad);
+            }
         }
     }
 }

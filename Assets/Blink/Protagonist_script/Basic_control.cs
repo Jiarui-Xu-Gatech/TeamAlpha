@@ -64,12 +64,12 @@ public class Basic_control : MonoBehaviour
 
         if (!allowedMoving)
         {
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
         if (allowedMoving)
         {
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY |RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Gathering"))

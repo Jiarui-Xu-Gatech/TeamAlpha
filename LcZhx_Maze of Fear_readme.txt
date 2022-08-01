@@ -67,7 +67,7 @@
 4.1 Detail who on the team did what
  Yilong Chen:  npc animation, navmesh path plan, npc-blood interaction
  Jiarui Xu  :  maze generation, camera adjust, game pro create, scene create, make videos
- Chunxuan Zhu: main char motions and interactions, level collectible setting
+ Chunxuan Zhu: main char motions and interactions, level collectible setting, Pause and help menu
  Zongen Li:    coding environment, miniMap, game pass/final goal
  Lintong Han:  options level, pause menu
 
@@ -76,7 +76,7 @@
  Jiarui Xu:    SmallWallForDuplicate, SmallWallForDuplicate2, SmallWallForDuplicate3
                SmallWallForDuplicate4, MazeWall, MazeWall2, MazeWall3, MazeWall4
                OuterWalls, BackgroundMusic, Plants
- Chunxuan Zhu: Protagonist(unity store)
+ Chunxuan Zhu: Protagonist(unity store), UIcanvas
  Zongen Li:    Terrain(Flowers,grass,snow mountain texture from unity store),
                MiniMap Icons(unity store), MiniMap, FinalGoal
  Lintong Han:  timer, coins, GameOver, GameController, MushRoom, MushRoom(1), MushRoom(2)
@@ -84,7 +84,7 @@
 4.3 C# script files individually
  Yilong Chen:  npcController.cs, BloodGameOver.cs
  Jiarui Xu:    Position.cs, AudioManager.cs
- Chunxuan Zhu: levelLoader.cs, BallCollector.cs, CollectBall.cs, Basic_control.cs, 
-               CoinScript.cs, Controller_input.cs, BloodGameOver.cs 
+ Chunxuan Zhu: levelLoader.cs, BallCollector.cs, CollectBall.cs, Basic_control.cs, Gamestarter.cs, HelpScript.cs,
+               CoinScript.cs, Controller_input.cs, BloodGameOver.cs, PMenuToggle.cs, QuitGame.cs
  Zonge Li:     levelLoader.cs
  Lintong Han:  levelSetup.cs, CoinScript.cs, PauseMenu.cs 

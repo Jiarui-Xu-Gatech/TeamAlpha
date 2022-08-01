@@ -23,7 +23,7 @@ public class BloodGameOver : MonoBehaviour
         if (!GameObject.Find("Protagonist").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Death") && GameObject.Find("Protagonist").GetComponent<Basic_control>().restart)
         {
             StartCoroutine(showTextFuntion());
-            SceneManager.LoadScene("GameplayScene");
+            SceneManager.LoadScene("EndGame");
         }
 
     }

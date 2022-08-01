@@ -14,6 +14,7 @@ public class TimeGameOver : MonoBehaviour
     {
         
         countDownTimer();
+        currentTime = 300;
     }
 
     void countDownTimer()
@@ -32,7 +33,7 @@ public class TimeGameOver : MonoBehaviour
         {
             //timeUI.text = "Game Over!";
             StartCoroutine(showTextFuntion());
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("EndGame");
         }
 
     }

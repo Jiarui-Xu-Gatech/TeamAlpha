@@ -127,7 +127,7 @@ public class Basic_control : MonoBehaviour
 
         anim.SetFloat("vely", inputForward);
         anim.SetFloat("velx", inputTurn);
-        anim.SetBool("Gathering", cinput.Gather & !isGathering & !gethit & !isJumping & !restart &this.GetComponent<Controller_input>().allowedGather);
+        anim.SetBool("Gathering", cinput.Gather & !isGathering & !gethit  & !restart &this.GetComponent<Controller_input>().allowedGather);
         anim.SetBool("Jumping", cinput.Jump & !isJumping & !gethit & !isGathering &!restart);
 
 

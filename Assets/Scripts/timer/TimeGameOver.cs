@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class TimeGameOver : MonoBehaviour
 {
-    public int currentTime=100;
+    public int currentTime=300;
     public Text timeUI;
     void Start()
     {
@@ -32,7 +32,7 @@ public class TimeGameOver : MonoBehaviour
         {
             //timeUI.text = "Game Over!";
             StartCoroutine(showTextFuntion());
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("GameOver");
         }
 
     }

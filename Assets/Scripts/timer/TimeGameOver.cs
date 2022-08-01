@@ -33,7 +33,7 @@ public class TimeGameOver : MonoBehaviour
         {
             //timeUI.text = "Game Over!";
             StartCoroutine(showTextFuntion());
-            SceneManager.LoadScene("EndGame");
+            SceneManager.LoadScene("GameOver");
         }
 
     }
